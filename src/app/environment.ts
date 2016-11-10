@@ -3,9 +3,16 @@
 // rc2 workaround
 import { enableDebugTools, disableDebugTools } from '@angular/platform-browser';
 import { enableProdMode, ApplicationRef } from '@angular/core';
+import { AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
+
 // Environment Providers
 let PROVIDERS: any[] = [
-  // common env directives
+  AUTH_PROVIDERS,
+  provideAuth({
+    tokenName: 'token',
+    globalHeaders: [{'Content-Type':'application/json'}]
+    , tokenGetter: () => localStorage.getItem('token')
+  })
 ];
 
 // Angular debug tools in the dev console

@@ -1,0 +1,48 @@
+<form role="form" #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+  <input type="hidden" name="_id" [(ngModel)]="model._id" #id="ngModel">
+  <div class="form-group row">
+    <label class="control-label col-sm-2" for="username">Username</label>
+    <div class="col-sm-10">
+      <input type="text" name="username" placeholder="Username" class="form-control boxed" id="username" minlength="3" [(ngModel)]="model.username" #username="ngModel">
+      <span class="has-error" [hidden]="username.valid || username.pristine">Error message.</span>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="control-label col-sm-2" for="password">Password</label>
+    <div class="col-sm-10">
+      <input type="password" name="password" class="form-control boxed" id="password" required [(ngModel)]="model.password" #password="ngModel">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="control-label col-sm-2 " for="email">Email</label>
+    <div class="col-sm-10">
+      <input type="text" name="email" placeholder="email@host.com" class="form-control boxed" id="email" required [(ngModel)]="model.email" #email="ngModel" validateEmail>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="control-label col-sm-2 " for="firstName">First Name</label>
+    <div class="col-sm-10">
+      <input type="text" name="firstName" placeholder="First Name" class="form-control boxed" id="firstName" required [(ngModel)]="model.firstName" #firstName="ngModel">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="control-label col-sm-2 " for="lastName">Last Name</label>
+    <div class="col-sm-10">
+      <input type="text" name="lastName" placeholder="Last Name" class="form-control boxed" id="lastName" required [(ngModel)]="model.lastName" #lastName="ngModel">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-offset-2 col-sm-10">
+      <select name="userType" class="form-control" id="userType">
+        <option *ngFor="let type of userTypes" [value]="type">{{type}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success pull-right" [disabled]="!userForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-secondary pull-right m-r-5" (click)="backToUsersList()"><i class="fa fa-arrow-left"></i> Back</button>
+    </div>
+  </div>
+</form>
+

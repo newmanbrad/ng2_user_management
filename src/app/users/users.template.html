@@ -1,0 +1,16 @@
+<div class="title-block" [@flyInOut]="'in'">
+  <h1 class="title">
+    User Management
+  </h1>
+  <!--<p class="title-description">-->
+    <!--Sub Text-->
+  <!--</p>-->
+</div>
+
+<div *ngIf="msg" class="msg">{{msg}}</div>
+
+<user-list [users]="user$"></user-list>
+
+
+
+

@@ -1,17 +1,18 @@
 import { Routes, RouterModule } from '@angular/router';
 import { Home } from './home';
-import { About } from './about';
+import { LoginComponent } from './login';
+import { UsersComponent, UserEditComponent } from './users';
 import { NoContent } from './no-content';
 
-import { DataResolver } from './app.resolver';
+import { UsersDataResolver } from './app.resolver';
 
+import { LoggedInGuard } from './login/logged-in.guard';
 
 export const ROUTES: Routes = [
-  { path: '',      component: Home },
-  { path: 'home',  component: Home },
-  { path: 'about', component: About },
-  {
-    path: 'detail', loadChildren: () => System.import('./+detail')
-  },
+  { path: '',      component: Home, canActivate: [LoggedInGuard] },
+  { path: 'home',  component: Home, canActivate: [LoggedInGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'users', component: UsersComponent, canActivate: [LoggedInGuard] },
+  { path: 'user/edit/:id', component: UserEditComponent, canActivate: [LoggedInGuard] },
   { path: '**',    component: NoContent },
 ];

@@ -1,0 +1,85 @@
+// @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,800,700,600);
+
+@import 'variables';
+@import '../../../../node_modules/bootstrap/scss/_variables';
+@import '../../../../node_modules/bootstrap/scss/_mixins';
+
+// common
+@import '_common/_styles/mixins';
+@import '_common/_styles/layout';
+@import '_common/_styles/typography';
+@import '_common/alert/alert';
+@import '_common/button/button';
+@import "_common/animations/animations";
+@import '_common/card/card';
+@import '_common/dropdown/dropdown';
+@import '_common/flex/flex';
+@import '_common/form/form';
+@import '_common/images-container/images-container';
+@import '_common/items-list/items-list';
+@import '_common/logo/logo';
+@import '_common/modal/modal-tabs';
+@import '_common/navigation/navigation';
+@import '_common/nprogress/nprogress';
+@import '_common/pagination/pagination';
+@import '_common/scrollbar/scrollbar';
+@import '_common/table/table';
+
+//app
+@import 'app/app';
+@import "app/_common/editor/editor";
+@import "app/_common/footer/footer";
+@import "app/_common/header/header";
+@import "app/_common/header/buttons/buttons";
+@import "app/_common/header/collapse/collapse";
+@import "app/_common/header/nav/nav";
+@import "app/_common/header/search/search";
+@import "app/_common/modals/modals";
+@import "app/_common/modals/modal-media/modal-media";
+
+@import "app/_common/sidebar/sidebar";
+@import "app/_common/sidebar/customize/customize";
+@import "app/_common/sidebar/header/header";
+
+@import "app/dashboard/history/history";
+@import "app/dashboard/items/items-list";
+@import "app/dashboard/items/items-header";
+@import "app/dashboard/stats/stats";
+@import "app/dashboard/dashboard";
+@import "app/tables/responsive-tables/responsive-tables";
+@import "app/pages/error";
+
+
+html,
+body {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	min-height: 100%;
+	font-family: 'Open Sans', sans-serif;
+	color: $color-text;
+	overflow-x: hidden;
+}
+
+.main-wrapper {
+	width: 100%;
+	position: absolute;
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#ref {
+	.color-primary {
+		color: $color-primary;
+	}
+
+	.chart {
+		.color-primary {
+			color: $chart-color-primary;
+		}
+		.color-secondary {
+			color: $chart-color-secondary;
+		}
+	}
+}

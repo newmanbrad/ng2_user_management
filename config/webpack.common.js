@@ -14,14 +14,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlElementsPlugin = require('./html-elements-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
-const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin'); 
+const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
+const autoprefixer = require('autoprefixer');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 
 /*
  * Webpack Constants
  */
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2290 from @AngularClass',
+  title: 'Example Application',
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer()
 };
@@ -50,6 +52,8 @@ module.exports = function(options) {
      * See: http://webpack.github.io/docs/configuration.html#cache
      */
      //cache: false,
+
+    postcss: [autoprefixer],  // this is inside module.exports object
 
     /*
      * The entry point for the bundle
@@ -173,7 +177,11 @@ module.exports = function(options) {
         {
           test: /\.(jpg|png|gif)$/,
           loader: 'file'
-        }
+        },
+        { test: /.scss$/, loaders: ['raw-loader','sass-loader'] },
+        { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' },
+        // Bootstrap 4
+        { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery' }
       ],
 
       postLoaders: [
@@ -201,6 +209,16 @@ module.exports = function(options) {
         prettyPrint: true
       }),
 
+      // var ProvidePlugin = require('webpack/lib/ProvidePlugin');
+      // require the plugin
+      new ProvidePlugin({
+        jQuery: 'jquery',
+        $: 'jquery',
+        jquery: 'jquery',
+        "Tether": 'tether',
+        "window.Tether": "tether"
+      }),
+
       /*
        * Plugin: ForkCheckerPlugin
        * Description: Do type checking in a separate process, so webpack don't need to wait.
@@ -223,7 +241,7 @@ module.exports = function(options) {
       /**
        * Plugin: ContextReplacementPlugin
        * Description: Provides context to Angular's use of System.import
-       * 
+       *
        * See: https://webpack.github.io/docs/list-of-plugins.html#contextreplacementplugin
        * See: https://github.com/angular/angular/issues/11580
        */

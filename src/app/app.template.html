@@ -1,0 +1,15 @@
+<div class="main-wrapper">
+  <div class="app" id="app" [class.sidebar-open]="sideBarState">
+
+    <header-menu (sideMenuStateChange)="sideMenuStateChange($event)"></header-menu>
+
+    <sidebar-menu></sidebar-menu>
+
+    <main id="main" class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+    <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
+
+  </div>
+</div>

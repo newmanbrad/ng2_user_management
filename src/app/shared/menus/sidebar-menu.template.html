@@ -1,0 +1,52 @@
+<aside class="sidebar">
+  <div class="sidebar-container">
+
+    <div class="sidebar-header">
+      <div class="brand">
+        Admin
+      </div>
+    </div>
+
+    <nav class="menu">
+      <ul class="nav metismenu open" id="sidebar-menu">
+
+        <li class="" routerLinkActive="active" [routerLinkActiveOptions]="{ name: '/login', exact: true }" *ngIf="!userloggedIn">
+          <a [routerLink]="['./login']">
+            <i class="fa fa-home"></i> Login
+          </a>
+        </li>
+
+        <li class="" *ngIf="userloggedIn">
+          <a (click)="logout()" )>
+            <i class="fa fa fa-power-off"></i> Logout
+          </a>
+        </li>
+
+        <li class="" routerLinkActive="active" [routerLinkActiveOptions]="{ name: '/', exact: true }" *ngIf="userloggedIn">
+          <a [routerLink]="['./']">
+            <i class="fa fa-home"></i> Dashboard
+          </a>
+        </li>
+
+        <li class="" routerLinkActive="active" [routerLinkActiveOptions]="{ name: '/users', exact: true }" *ngIf="userloggedIn">
+          <a [routerLink]="['./users']">
+            <i class="fa fa-users"></i> Users
+            <i class="fa arrow"></i>
+          </a>
+
+          <ul>
+            <li class="">
+              <a href="charts-flot.html">
+                Add User
+              </a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+
+  </div>
+
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
