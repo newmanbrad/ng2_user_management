@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
               private _globalEventsManager: GlobalEventsManager,
               private _router: Router
               ) {
+
     this._globalEventsManager.userloggedIn.subscribe((mode)=>{
       this.userloggedIn = mode;
       this.gatherUserInformation();

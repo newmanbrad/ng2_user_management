@@ -6,7 +6,6 @@ const css = require('./app.style.scss');
 
 @Component({
   selector: 'app',
-  encapsulation: ViewEncapsulation.None,
   styleUrls: [
     css.toString()
   ],

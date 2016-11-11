@@ -14,9 +14,7 @@ import { ROUTES } from './app.routes';
 import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InteralStateType } from './app.service';
-import { UsersService } from './users/users.service';
 import { Home } from './home';
-import { UsersComponent, UserFormComponent, UsersListComponent, UserEditComponent } from './users';
 import { LoginComponent, LoggedInGuard } from './login';
 import { HeaderComponent, SideBarMenuComponent } from './shared/menus/';
 import { NoContent } from './no-content';
@@ -27,13 +25,15 @@ import { HasPermissionDirective, EmailValidator } from './shared/directives';
 // shared services
 import { GlobalEventsManager } from './shared/services/';
 
+// application modules
+import { UsersModule } from './users/users.module';
+
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
   AppState,
-  UsersService,
   GlobalEventsManager,
-  LoggedInGuard,
+  LoggedInGuard
 ];
 
 type StoreType = {
@@ -50,15 +50,9 @@ type StoreType = {
   declarations: [
     App,
     Home,
-    // users
-    UsersComponent,
-    UserFormComponent,
-    UsersListComponent,
-    UserEditComponent,
     LoginComponent,
     HeaderComponent,
     SideBarMenuComponent,
-    // end users
     NoContent,
     // pipes
     XLarge,
@@ -71,7 +65,8 @@ type StoreType = {
     FormsModule,
     HttpModule,
     JsonpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true })
+    RouterModule.forRoot(ROUTES, { useHash: true }),
+    UsersModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
