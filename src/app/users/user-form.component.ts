@@ -33,7 +33,10 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserTypes();
-    this.getUserData();
+
+    if(this.userId){
+      this.getUserData();
+    }
   }
 
   private getUserTypes (): void {
@@ -55,8 +58,15 @@ export class UserFormComponent implements OnInit {
     this.model = new User(_id, username, password, email, firstName, lastName);
   }
 
-  addUser (form: NgForm) {
-    this._usersService.updateUser(form.value).subscribe(data => console.log(data));
+  addEditUser (form: NgForm) {
+
+    if(this.userId){
+      // edit
+      this._usersService.updateUser(form.value).subscribe(data => console.log(data));
+    } else {
+      // add
+      this._usersService.addUser(form.value).subscribe(data => console.log(data));
+    }
     this.submitted = true;
   }
 

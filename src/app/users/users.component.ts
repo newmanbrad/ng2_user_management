@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, state, style, animate, transition  }      from '@angular/core';
+import { Component, OnInit, trigger, state, style, animate, transition  } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { UsersService } from "./users.service";
 import { Router } from '@angular/router';

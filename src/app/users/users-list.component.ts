@@ -16,4 +16,8 @@ export class UsersListComponent {
     this._router.navigate(['/user/edit', id]);
   }
 
+  addUser(){
+    this._router.navigate(['user/edit']);
+  }
+
 }

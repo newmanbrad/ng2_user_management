@@ -10,7 +10,7 @@
     <nav class="menu">
       <ul class="nav metismenu open" id="sidebar-menu">
 
-        <li class="" routerLinkActive="active" [routerLinkActiveOptions]="{ name: '/login', exact: true }" *ngIf="!userloggedIn">
+        <li class="" routerLinkActive="active" [routerLinkActiveOptions]="{ name: '/login', exact: true }">
           <a [routerLink]="['./login']">
             <i class="fa fa-home"></i> Login
           </a>
@@ -22,13 +22,13 @@
           </a>
         </li>
 
-        <li class="" routerLinkActive="active" [routerLinkActiveOptions]="{ name: '/', exact: true }" *ngIf="userloggedIn">
+        <li class="" routerLinkActive="active" [routerLinkActiveOptions]="{ name: '/', exact: true }">
           <a [routerLink]="['./']">
             <i class="fa fa-home"></i> Dashboard
           </a>
         </li>
 
-        <li class="" routerLinkActive="active" [routerLinkActiveOptions]="{ name: '/users', exact: true }" *ngIf="userloggedIn">
+        <li class="" routerLinkActive="active" [routerLinkActiveOptions]="{ name: '/users', exact: true }">
           <a [routerLink]="['./users']">
             <i class="fa fa-users"></i> Users
             <i class="fa arrow"></i>

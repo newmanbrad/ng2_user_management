@@ -13,6 +13,7 @@ export const ROUTES: Routes = [
   { path: 'home',  component: Home, canActivate: [LoggedInGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UsersComponent, canActivate: [LoggedInGuard] },
+  { path: 'user/edit', component: UserEditComponent, canActivate: [LoggedInGuard] },
   { path: 'user/edit/:id', component: UserEditComponent, canActivate: [LoggedInGuard] },
   { path: '**',    component: NoContent },
 ];

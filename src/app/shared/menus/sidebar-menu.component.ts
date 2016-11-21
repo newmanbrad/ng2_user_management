@@ -12,7 +12,7 @@ export class SideBarMenuComponent {
   userloggedIn: boolean = false;
 
   constructor(private _usersService: UsersService,
-              private _globalEventsManager: GlobalEventsManager,
+              public _globalEventsManager: GlobalEventsManager,
               private _router: Router
               ) {
 

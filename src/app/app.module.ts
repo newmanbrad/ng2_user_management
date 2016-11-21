@@ -15,7 +15,7 @@ import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InteralStateType } from './app.service';
 import { Home } from './home';
-import { LoginComponent, LoggedInGuard } from './login';
+import { LoggedInGuard } from './login';
 import { HeaderComponent, SideBarMenuComponent } from './shared/menus/';
 import { NoContent } from './no-content';
 // pipes
@@ -27,6 +27,7 @@ import { GlobalEventsManager } from './shared/services/';
 
 // application modules
 import { UsersModule } from './users/users.module';
+import { LoginModule } from './login/login.module';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -50,7 +51,6 @@ type StoreType = {
   declarations: [
     App,
     Home,
-    LoginComponent,
     HeaderComponent,
     SideBarMenuComponent,
     NoContent,
@@ -66,7 +66,8 @@ type StoreType = {
     HttpModule,
     JsonpModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
-    UsersModule
+    UsersModule,
+    LoginModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

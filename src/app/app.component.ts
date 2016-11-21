@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AppState } from './app.service';
 import { UsersService } from './users/users.service';
 import { GlobalEventsManager } from './shared/services';
