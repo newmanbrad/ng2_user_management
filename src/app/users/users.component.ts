@@ -1,12 +1,14 @@
-import { Component, OnInit, trigger, state, style, animate, transition  } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, trigger, state, style, animate, transition  } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { UsersService } from "./users.service";
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   moduleId: module.id,
   selector: 'app-contact',
   templateUrl: 'users.template.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ FormBuilder ],
   animations: [
     trigger('flyInOut', [
@@ -27,7 +29,8 @@ import { Router } from '@angular/router';
     ])
   ]
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
   private debugComponent: boolean = true;
   public user$:Array<Object>;
   msg = 'Loading users ...';
@@ -45,9 +48,15 @@ export class UsersComponent implements OnInit {
     this.msg = '';
   }
 
+  ngOnDestroy(){
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
+  }
+
   getUsers() {
 
-    this.usersService.getUsers().subscribe(
+    this.subscription = this.usersService.getUsers().subscribe(
       // the first argument is a function which runs on success
       data => { this.user$ = data},
       // the second argument is a function which runs on error

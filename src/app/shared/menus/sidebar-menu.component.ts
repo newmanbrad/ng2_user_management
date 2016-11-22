@@ -6,7 +6,8 @@ import { GlobalEventsManager } from "../services/";
 @Component({
   selector: 'sidebar-menu',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: 'sidebar-menu.template.html'
+  templateUrl: 'sidebar-menu.template.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideBarMenuComponent {
   userloggedIn: boolean = false;

@@ -7,6 +7,7 @@ import { GlobalEventsManager } from "../services/";
   selector: 'header-menu',
   encapsulation: ViewEncapsulation.None,
   templateUrl: 'header-menu.template.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(document:click)': 'checkClickLocation($event)'
   }

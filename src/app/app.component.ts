@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { AppState } from './app.service';
 import { UsersService } from './users/users.service';
 import { GlobalEventsManager } from './shared/services';
@@ -9,7 +9,8 @@ const css = require('./app.style.scss');
   styleUrls: [
     css.toString()
   ],
-  templateUrl: 'app.template.html'
+  templateUrl: 'app.template.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class App {
 

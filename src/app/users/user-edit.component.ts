@@ -1,18 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-
-import { UsersService } from "./users.service";
 
 @Component({
   moduleId: module.id,
   selector: 'user-edit',
-  templateUrl: 'user-edit.template.html'
+  templateUrl: 'user-edit.template.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserEditComponent implements OnInit{
   userId: string;
 
-  constructor(private _userService: UsersService,
-              private _route: ActivatedRoute
+  constructor(private _route: ActivatedRoute
               ){ }
 
   ngOnInit () {

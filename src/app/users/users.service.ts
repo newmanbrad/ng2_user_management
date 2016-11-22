@@ -76,9 +76,7 @@ export class UsersService {
 
     debugService && console.info('users.service: getUserById method fired');
 
-    //let query = '{"_id": "' + id.trim() + '"}';
-
-    let query =  '?findById=' +  id.trim();
+    let query =  '/' +  id.trim();
 
     return this.authHttp.get(serviceUrls.usersUrl + query)
       .map(this.extractData)
@@ -97,6 +95,10 @@ export class UsersService {
   public addUser (body: Object): Observable<User[]> {
 
     debugService && console.info('users.service: addUser method fired, Data:', body);
+
+    delete body['_id'];
+
+    console.log(body);
 
     let bodyString = JSON.stringify(body);
 

@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, NgForm} from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, NgForm} from '@angular/forms';
+import { Router, ActivatedRoute} from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { User } from './user.model';
 import { UsersService } from "./users.service";
@@ -8,10 +9,13 @@ import { UsersService } from "./users.service";
 @Component({
   moduleId: module.id,
   selector: 'user-form',
-  templateUrl: 'user-form.template.html'
+  templateUrl: 'user-form.template.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UserFormComponent implements OnInit {
-  @Input() userId;
+export class UserFormComponent implements OnInit, OnDestroy {
+  userId:string = null;
+  private subscription: Subscription;
+
 
   model = new User();
   errorMessage = '';
@@ -28,15 +32,22 @@ export class UserFormComponent implements OnInit {
   email: string = '';
 
   constructor(private _usersService: UsersService,
-              private _router: Router
+              private _router: Router,
+              private _activatedRoute: ActivatedRoute
               ){}
 
   ngOnInit(): void {
     this.getUserTypes();
 
-    if(this.userId){
-      this.getUserData();
-    }
+    this.subscription = this._activatedRoute.params.subscribe(
+      (param: any) => {
+        let currentId = param['id'];
+        if(currentId){
+          this.userId = currentId;
+          this.getUserData();
+        }
+      });
+
   }
 
   private getUserTypes (): void {
@@ -54,8 +65,10 @@ export class UserFormComponent implements OnInit {
   }
 
   setUserModel(user): void {
-    let { _id, username, password, email, firstName, lastName } = user[0];
-    this.model = new User(_id, username, password, email, firstName, lastName);
+
+    console.log(user);
+    let { username, password, email, firstName, lastName } = user;
+    this.model = new User(this.userId, username, password, email, firstName, lastName);
   }
 
   addEditUser (form: NgForm) {
@@ -72,6 +85,12 @@ export class UserFormComponent implements OnInit {
 
   backToUsersList(): void {
     this._router.navigate(['/users']);
+  }
+
+  ngOnDestroy(){
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
 
 }

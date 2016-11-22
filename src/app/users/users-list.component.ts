@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
   selector: 'user-list',
-  templateUrl: 'users-list.template.html'
+  templateUrl: 'users-list.template.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersListComponent {
   @Input() users;
